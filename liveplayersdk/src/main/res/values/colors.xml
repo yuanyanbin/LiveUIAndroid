@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="translate">#00000000</color><!-- 透明色 -->
+    <color name="white">#ffffff</color><!--白色-->
+    <color name="black">#000000</color><!--黑色-->
+    <color name="minor_text_33">#212832</color><!--常用文字选中颜色-->
+    <color name="main_color">#ff9147</color><!--主色调、导航栏色值、按钮颜色-->
+    <color name="minor_text_66">#898989</color><!-- 次次级文字信息、辅助性文字 -->
+    <color name="split_line_module">#f2f2f2</color><!--分割线模块20px底色、动态资源底色-->
+    <color name="translate_66">#66000000</color><!-- 66%透明色 -->
+
+</resources>
