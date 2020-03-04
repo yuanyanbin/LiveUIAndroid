@@ -53,6 +53,11 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     private String grade;
     private String phone;
 
+    private long startTime;
+    private long endTime;
+    private String teacherNick;
+    private String teacherId;
+
     public static void setSDKListener(AnswerSDKWithUI.AnswerSDKListener listener) {
         answerSDKListener = listener;
     }
@@ -82,13 +87,13 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     }
 
     private void setQuestionStatus(QuestionDetailBean data) {
+        mDownTimer = new DownTimer();
+        mDownTimer.setListener(this); //开启定时器
         int status = data.getStatus();//问题状态(-1:已失效; 0:未应答; 1:解答中; 2:待支付; 3:已完成)
         timeout = data.getRemainSec();
         id = data.getId();
         if (status == 0) {
             //解答中
-            mDownTimer = new DownTimer();
-            mDownTimer.setListener(this); //开启定时器
             mDownTimer.startDown((timeout + 5) * 1000);
             countDownRl.setVisibility(View.VISIBLE);
             enterLiveRl.setVisibility(View.GONE);
@@ -138,6 +143,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
         });
         findViewById(R.id.enter_live_tv).setOnClickListener(view -> {
             presenter.enterQuestion(id);
+            startTime = System.currentTimeMillis();
             isEnterAnswer = true;
             LiveSDKWithUI.enterRoom(AnswerAwaitActivity.this, joinCode, TextUtils.isEmpty(name) ? "beishi" : name, s -> {
                 ToastUtil.showShort(AnswerAwaitActivity.this, s);
@@ -228,6 +234,8 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
 
     private void setData(QuestionDetailBean data) {
         Glide.with(mContext).load(data.getTeacherAvatar()).into(roundImageView);
+        teacherId = data.getTeacherId();
+        teacherNick = data.getTeacherNick();
         nickNameTv.setText(data.getTeacherNick());
         subjectNameTv.setText(getSubjectName(data.getSubjectName()));
         teachDurationTv.setText(data.getTeacherDuration() + "分钟");
@@ -290,7 +298,9 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
         super.onStart();
         if (isEnterAnswer) {
             presenter.finishQuestion(id);
-            answerSDKListener.onLiveFinish("辅导完成");
+            endTime = System.currentTimeMillis();
+            long duration = endTime - startTime;
+            answerSDKListener.onLiveFinish(teacherId, teacherNick, duration);
             finish();
         }
     }
@@ -298,6 +308,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mDownTimer.stopDown();
         presenter.detachView();
     }
 

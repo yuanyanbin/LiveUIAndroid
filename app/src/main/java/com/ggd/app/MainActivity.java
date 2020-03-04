@@ -21,17 +21,17 @@ public class MainActivity extends AppCompatActivity {
         AnswerSDKWithUI.getIncompleteQuestion(this, new AnswerSDKWithUI.AnswerSDKListener() {
             @Override
             public void onError(String msg) {
-
+                ToastUtil.showLong(MainActivity.this, msg);
             }
 
             @Override
-            public void onLiveFinish(String msg) {
-
+            public void onLiveFinish(String id, String teacherName, long duration) {
+                ToastUtil.showLong(MainActivity.this, String.valueOf(duration));
             }
 
             @Override
             public void onLiveCancel(String msg) {
-
+                ToastUtil.showLong(MainActivity.this, msg);
             }
         });
 
@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onLiveFinish(String msg) {
-                            ToastUtil.showLong(MainActivity.this, msg);
+                        public void onLiveFinish(String id, String teacherName, long duration) {
+                            ToastUtil.showLong(MainActivity.this, String.valueOf(duration));
                         }
 
                         @Override

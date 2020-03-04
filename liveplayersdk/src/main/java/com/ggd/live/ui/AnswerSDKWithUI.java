@@ -113,9 +113,11 @@ public class AnswerSDKWithUI {
         /**
          * 完成秒答回调
          *
-         * @param msg
+         * @param id          老师id
+         * @param teacherName 老师名称
+         * @param duration    时长
          */
-        void onLiveFinish(String msg);
+        void onLiveFinish(String id, String teacherName, long duration);
 
         /**
          * 取消秒答回调

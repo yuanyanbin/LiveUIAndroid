@@ -39,8 +39,17 @@ public class QuestionDetailBean implements Serializable {
     private int duration;
     private String teacherAvatar;
     private String teacherNick;
+    private String teacherId;
     private int teacherStar;
     private int teacherDuration;
+
+    public void setTeacherId(String teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public String getTeacherId() {
+        return teacherId;
+    }
 
     public void setTeacherDuration(int teacherDuration) {
         this.teacherDuration = teacherDuration;
