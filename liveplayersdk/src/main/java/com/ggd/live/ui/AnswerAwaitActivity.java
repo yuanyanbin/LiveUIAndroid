@@ -93,7 +93,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
         timeout = data.getRemainSec();
         id = data.getId();
         if (status == 0) {
-            //解答中
+            //等待中
             mDownTimer.startDown((timeout + 5) * 1000);
             countDownRl.setVisibility(View.VISIBLE);
             enterLiveRl.setVisibility(View.GONE);
