@@ -18,6 +18,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AnswerSDKWithUI.getIncompleteQuestion(this, new AnswerSDKWithUI.AnswerSDKListener() {
+            @Override
+            public void onError(String msg) {
+
+            }
+
+            @Override
+            public void onLiveFinish(String msg) {
+
+            }
+
+            @Override
+            public void onLiveCancel(String msg) {
+
+            }
+        });
+
         findViewById(R.id.hello_button).setOnClickListener(view -> {
             AnswerSDKWithUI.enterAnswer(this, "test", "2033068", "3000553", "89", "11",
                     "13453390514", subject, imageUrl, description, new AnswerSDKWithUI.AnswerSDKListener() {

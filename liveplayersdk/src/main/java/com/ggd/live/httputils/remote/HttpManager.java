@@ -64,7 +64,6 @@ public class HttpManager {
         netParams.put("classId", classId);
         netParams.put("schoolId", schoolId);
         netParams.put("grade", grade);
-        netParams.put("thirdToken", "sdfgas123453456");
 
         if (!TextUtils.isEmpty(name)) {
             netParams.put("name", name);

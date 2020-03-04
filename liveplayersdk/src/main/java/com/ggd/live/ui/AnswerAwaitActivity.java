@@ -1,6 +1,5 @@
 package com.ggd.live.ui;
 
-import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -66,13 +65,41 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
 
     @Override
     protected void initViewsAndEvents() {
-        getIntentData();
         presenter = new AnswerWaitPresenter(getBaseContext());
         presenter.attachView(this);
-        initView();
-        showLoadingDialog();
-        presenter.channelUserLogin(name, userId, classId, schoolId, grade, phone);
 
+        QuestionDetailBean data = (QuestionDetailBean) getIntent().getSerializableExtra("data");
+        getIntentData();
+        initView();
+
+        if (data != null) {
+            setQuestionStatus(data);
+        } else {
+            showLoadingDialog();
+            presenter.channelUserLogin(name, userId, classId, schoolId, grade, phone);
+        }
+
+    }
+
+    private void setQuestionStatus(QuestionDetailBean data) {
+        int status = data.getStatus();//问题状态(-1:已失效; 0:未应答; 1:解答中; 2:待支付; 3:已完成)
+        timeout = data.getRemainSec();
+        id = data.getId();
+        if (status == 0) {
+            //解答中
+            mDownTimer = new DownTimer();
+            mDownTimer.setListener(this); //开启定时器
+            mDownTimer.startDown((timeout + 5) * 1000);
+            countDownRl.setVisibility(View.VISIBLE);
+            enterLiveRl.setVisibility(View.GONE);
+
+        } else if (status == 1) {
+            //进入课堂
+            countDownRl.setVisibility(View.GONE);
+            enterLiveRl.setVisibility(View.VISIBLE);
+            mDownTimer.stopDown();
+            setData(data);
+        }
     }
 
     private void getIntentData() {

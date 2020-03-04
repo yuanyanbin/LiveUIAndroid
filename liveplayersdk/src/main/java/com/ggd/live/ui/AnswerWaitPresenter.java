@@ -6,6 +6,7 @@ import com.ggd.live.httputils.constant.Constants;
 import com.ggd.live.httputils.remote.HttpManager;
 import com.ggd.live.httputils.remote.ReqCallBack;
 import com.ggd.live.httputils.util.GsonUtil;
+import com.ggd.live.httputils.util.SharedPreferencesUtil;
 import com.ggd.live.httputils.util.ToastUtil;
 
 
@@ -52,7 +53,9 @@ public class AnswerWaitPresenter implements AnswerWaitContract.Presenter {
             public void onReqSuccess(String result) {
                 if (mView != null) {
                     StudentDetailBean bean = GsonUtil.getGson().fromJson(result, StudentDetailBean.class);
-                    Constants.TOKEN = bean.getData().getLoginToken();
+                    String token = bean.getData().getLoginToken();
+                    SharedPreferencesUtil.setString(mContext, Constants.USER_TOKEN, token);
+
                     mView.userLoginSuccess();
                 }
             }

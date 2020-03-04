@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import com.ggd.live.httputils.constant.Constants;
 import com.ggd.live.httputils.util.CommonUtil;
+import com.ggd.live.httputils.util.SharedPreferencesUtil;
 
 import java.util.HashMap;
 
@@ -25,7 +26,7 @@ public class HttpMapUtil {
         netParams.put("deviceId", CommonUtil.getDeviceId(mContext));//设备标识
         netParams.put("deviceModel", CommonUtil.getSystemModel()); //设备型号
         netParams.put("appVersion", CommonUtil.getVersionName(mContext)); //应用版本
-        netParams.put("token", Constants.TOKEN);
+        netParams.put("token", SharedPreferencesUtil.getString(mContext, Constants.USER_TOKEN, ""));
         netParams.put("channel", "bszhihui");
         return netParams;
     }
