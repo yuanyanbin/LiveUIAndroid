@@ -269,7 +269,7 @@ public class OKHttpRequest {
      */
     public <T> void upLoadFile(final String actionUrl, HashMap<String, Object> paramsMap, final ProgressCallBack callBack) {
         try {
-            String mBaseUrl = Constants.appBaseUrl;
+            String mBaseUrl = Constants.HTTP_SITE ? Constants.appBaseUrl : Constants.appTestBaseUrl;
             //补全请求地址
             String requestUrl = String.format("%s/%s", mBaseUrl, actionUrl);
             MultipartBody.Builder builder = new MultipartBody.Builder();

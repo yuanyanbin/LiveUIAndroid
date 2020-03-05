@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        AnswerSDKWithUI.setHttpSite(false);
         AnswerSDKWithUI.getIncompleteQuestion(this, new AnswerSDKWithUI.AnswerSDKListener() {
             @Override
             public void onError(String msg) {

@@ -45,7 +45,8 @@ public class OkHttpUtils {
             pos++;
         }
 
-        String mBaseUrl = Constants.appBaseUrl;
+        String mBaseUrl = Constants.HTTP_SITE ? Constants.appBaseUrl : Constants.appTestBaseUrl;
+
         String requestUrl = String.format("%s/%s?%s", mBaseUrl, actionUrl, tempParams.toString());
         Request request = addHeaders(context)
                 //.cacheControl(new CacheControl.Builder().maxAge(6000, TimeUnit.SECONDS).build())
@@ -75,7 +76,8 @@ public class OkHttpUtils {
         }
         String params = tempParams.toString();
         RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, params);
-        String mBaseUrl = Constants.appBaseUrl;
+        String mBaseUrl = Constants.HTTP_SITE ? Constants.appBaseUrl : Constants.appTestBaseUrl;
+
         String requestUrl = String.format("%s/%s", mBaseUrl, actionUrl);
         Request request = addHeaders(context).url(requestUrl).post(body).build();
         return request;
@@ -94,7 +96,8 @@ public class OkHttpUtils {
             builder.add(key, paramsMap.get(key));
         }
         RequestBody formBody = builder.build();
-        String mBaseUrl = Constants.appBaseUrl;
+        String mBaseUrl = Constants.HTTP_SITE ? Constants.appBaseUrl : Constants.appTestBaseUrl;
+
         String requestUrl = String.format("%s/%s", mBaseUrl, actionUrl);
         Request request = addHeaders(context).url(requestUrl).post(formBody).build();
         return request;

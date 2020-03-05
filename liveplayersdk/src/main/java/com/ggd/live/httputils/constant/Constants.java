@@ -12,7 +12,9 @@ import okhttp3.MediaType;
  */
 public class Constants {
     //url基地址——测试地址
-    public static final String appBaseUrl = "http://test.gegeda.vip/studentApp";
+    public static final String appTestBaseUrl = "http://test.gegeda.vip/studentApp";
+
+    public static final String appBaseUrl = "http://gegeda.vip/studentApp";
 
 
     public static final int TYPE_GET = 0;//get请求
@@ -21,6 +23,8 @@ public class Constants {
     public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
 
     public static final String USER_TOKEN = "userToken";//
+
+    public static boolean HTTP_SITE = false;
 
     //渠道用户登录
     public static final String channelUserLogin = "system/channelUserLogin";

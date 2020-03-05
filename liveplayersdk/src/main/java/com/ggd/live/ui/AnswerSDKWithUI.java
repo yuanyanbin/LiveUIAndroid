@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
 
+import com.ggd.live.httputils.constant.Constants;
 import com.ggd.live.httputils.remote.HttpManager;
 import com.ggd.live.httputils.remote.ReqCallBack;
 import com.ggd.live.httputils.util.GsonUtil;
@@ -99,6 +100,15 @@ public class AnswerSDKWithUI {
 
             }
         });
+    }
+
+    /**
+     * 设置网络环境
+     *
+     * @param b true:正式环境
+     */
+    public static void setHttpSite(boolean b) {
+        Constants.HTTP_SITE = b;
     }
 
     public interface AnswerSDKListener {

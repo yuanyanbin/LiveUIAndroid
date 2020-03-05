@@ -57,6 +57,8 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     private long endTime;
     private String teacherNick;
     private String teacherId;
+    private boolean isStartClass;
+    private CommonDialog enterDialog;
 
     public static void setSDKListener(AnswerSDKWithUI.AnswerSDKListener listener) {
         answerSDKListener = listener;
@@ -94,12 +96,14 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
         id = data.getId();
         if (status == 0) {
             //等待中
+            isStartClass = false;
             mDownTimer.startDown((timeout + 5) * 1000);
             countDownRl.setVisibility(View.VISIBLE);
             enterLiveRl.setVisibility(View.GONE);
 
         } else if (status == 1) {
             //进入课堂
+            isStartClass = true;
             countDownRl.setVisibility(View.GONE);
             enterLiveRl.setVisibility(View.VISIBLE);
             mDownTimer.stopDown();
@@ -142,14 +146,19 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
             }
         });
         findViewById(R.id.enter_live_tv).setOnClickListener(view -> {
-            presenter.enterQuestion(id);
-            startTime = System.currentTimeMillis();
-            isEnterAnswer = true;
-            LiveSDKWithUI.enterRoom(AnswerAwaitActivity.this, joinCode, TextUtils.isEmpty(name) ? "beishi" : name, s -> {
-                ToastUtil.showShort(AnswerAwaitActivity.this, s);
-            });
+            enterLive();
         });
 
+    }
+
+    //进入教室
+    private void enterLive() {
+        presenter.enterQuestion(id);
+        startTime = System.currentTimeMillis();
+        isEnterAnswer = true;
+        LiveSDKWithUI.enterRoom(AnswerAwaitActivity.this, joinCode, TextUtils.isEmpty(name) ? "beishi" : name, s -> {
+            ToastUtil.showShort(AnswerAwaitActivity.this, s);
+        });
     }
 
 
@@ -203,11 +212,13 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
         timeout = data.getTimeout();
         if (status == 1) {
             //解答中
+            isStartClass = true;
             mDownTimer.stopDown();
             countDownRl.setVisibility(View.GONE);
             enterLiveRl.setVisibility(View.VISIBLE);
             setData(data);
         } else {
+            isStartClass = false;
             countDownRl.setVisibility(View.VISIBLE);
             enterLiveRl.setVisibility(View.GONE);
         }
@@ -266,7 +277,12 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     @Override
     public void onBackPressed() {
         //放弃等待
-        showCancelDialog();
+        if (isStartClass) {
+            showEnterDialog();
+        } else {
+            showCancelDialog();
+        }
+
     }
 
     /**
@@ -283,6 +299,22 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
             presenter.cancelQuestion(id);
         });
         cancelDialog.show();
+    }
+
+    /**
+     * 进入教室
+     */
+    private void showEnterDialog() {
+        if (enterDialog == null) {
+            enterDialog = new CommonDialog(this);
+            enterDialog.setContent("老师已接单与面对面沟通");
+        }
+        enterDialog.setOnCancelListener("取消", dialog -> dialog.dismiss());
+        enterDialog.setOnConfirmListener("进入教室", dialog -> {
+            dialog.dismiss();
+            enterLive();
+        });
+        enterDialog.show();
     }
 
 
@@ -308,7 +340,9 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mDownTimer.stopDown();
+        if (mDownTimer != null){
+            mDownTimer.stopDown();
+        }
         presenter.detachView();
     }
 
