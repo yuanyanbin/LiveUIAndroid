@@ -1,4 +1,4 @@
-package com.ggd.live.ui;
+package com.ggd.live.ui.data;
 
 import java.io.Serializable;
 

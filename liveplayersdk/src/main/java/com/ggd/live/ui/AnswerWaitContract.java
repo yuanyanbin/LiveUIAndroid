@@ -1,6 +1,8 @@
 package com.ggd.live.ui;
 
 
+import com.ggd.live.ui.data.QuestionDetailBean;
+
 /**
  * Copyright (C)
  * FileName: AnswerWaitContract

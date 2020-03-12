@@ -8,6 +8,9 @@ import com.ggd.live.httputils.constant.Constants;
 import com.ggd.live.httputils.remote.HttpManager;
 import com.ggd.live.httputils.remote.ReqCallBack;
 import com.ggd.live.httputils.util.GsonUtil;
+import com.ggd.live.httputils.util.LogUtil;
+import com.ggd.live.ui.data.QuestionDetailBean;
+import com.ggd.live.ui.data.UnfinishedAnswerBean;
 
 /**
  * Copyright (C)
@@ -109,6 +112,7 @@ public class AnswerSDKWithUI {
      */
     public static void setHttpSite(boolean b) {
         Constants.HTTP_SITE = b;
+        LogUtil.setLog(!b);
     }
 
     public interface AnswerSDKListener {

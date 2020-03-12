@@ -10,6 +10,7 @@ import com.baijiayun.glide.Glide;
 import com.baijiayun.live.ui.LiveSDKWithUI;
 import com.ggd.live.R;
 import com.ggd.live.httputils.util.ToastUtil;
+import com.ggd.live.ui.data.QuestionDetailBean;
 
 
 /**
