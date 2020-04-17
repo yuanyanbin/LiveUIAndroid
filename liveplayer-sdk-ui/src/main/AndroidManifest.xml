@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.baijiayun.live.ui">
+
+    <application>
+        <activity
+            android:name="com.baijiayun.live.ui.activity.LiveRoomActivity"
+            android:configChanges="orientation|screenSize|layoutDirection"
+            android:launchMode="singleTop"
+            android:hardwareAccelerated="false"
+            android:theme="@style/LiveAppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.baijiayun.live.module.AnswerAwaitActivity"
+            android:screenOrientation="landscape"/>
+    </application>
+
+</manifest>

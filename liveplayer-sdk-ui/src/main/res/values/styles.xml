@@ -1,0 +1,118 @@
+<resources>
+
+    <style name="LiveAppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="LiveAppTheme" parent="LiveAppBaseTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="LiveBlueButtonEnable">
+        <item name="android:textColor">@color/live_white</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:background">@color/live_blue</item>
+    </style>
+
+    <style name="LiveTextTitle">
+        <item name="android:textColor">@color/live_text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="LiveTextNormal">
+        <item name="android:textColor">@color/live_text_color</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="LiveCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@color/live_blue</item>
+    </style>
+
+    <style name="LiveBaseDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/live_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/live_dialog_exit</item>
+    </style>
+
+    <style name="LiveBaseSendMsgDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/live_dialog_send_msg_enter</item>
+        <item name="android:windowExitAnimation">@anim/live_dialog_send_msg_exit</item>
+    </style>
+
+    <style name="LiveMoreDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/live_dialog_more_enter</item>
+        <item name="android:windowExitAnimation">@anim/live_dialog_more_exit</item>
+    </style>
+
+    <style name="LiveDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/live_text_color_mid_light</item>
+    </style>
+
+    <style name="ViewBigPicAnim">
+        <item name="android:windowEnterAnimation">@anim/live_dialog_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/live_dialog_scale_out</item>
+    </style>
+
+    <style name="ShareDialogAnim">
+        <item name="android:windowEnterAnimation">@anim/live_dialog_down_in_x90</item>
+        <item name="android:windowExitAnimation">@anim/live_dialog_down_out_x90</item>
+    </style>
+
+    <style name="LiveBaseDialogFragment">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="DialogStyle" parent="android:style/Theme.Dialog">
+        <!--背景颜色及和透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否去除标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!--是否去除边框-->
+        <item name="android:windowFrame">@null</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="TimerEditTextStyle">
+        <item name="android:layout_width">@dimen/timer_edit_width</item>
+        <item name="android:layout_height">@dimen/timer_edit_height</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@drawable/sel_btn_textcolor_timer_ui</item>
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:imeOptions">flagNoExtractUi</item>
+        <item name="android:background">@drawable/bg_window_timer_count_ui</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <!-- 加载对话框 -->
+    <style name="Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/translate</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="CommonDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+    </style>
+</resources>
