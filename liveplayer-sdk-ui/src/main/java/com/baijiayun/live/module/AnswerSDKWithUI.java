@@ -113,7 +113,7 @@ public class AnswerSDKWithUI {
      */
     public static void setHttpSite(boolean b) {
         Constants.HTTP_SITE = b;
-//        LogUtil.setLog(!b);
+        LogUtil.setLog(!b);
     }
 
     public interface AnswerSDKListener {
