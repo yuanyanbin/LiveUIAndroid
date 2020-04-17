@@ -171,3 +171,29 @@
    public static *** i(...);
    public static *** w(...);
  }
+
+
+-dontwarn com.baijiahulian.**
+-dontwarn com.bjhl.**
+-keep class com.baijiahulian.**{*;}
+-keep class com.bjhl.**{*;}
+-keep class com.baijia.**{*;}
+-keep class com.baijiayun.**{*;}
+-keep class org.webrtc.**{*;}
+
+ ##---------------Begin: proguard configuration for Gson  ----------
+ # Gson uses generic type information stored in a class file when working with fields. Proguard
+ # removes such information by default, so configure it to keep all of it.
+ -keepattributes Signature
+ -keepattributes *Annotation*
+ -dontwarn sun.misc.**
+ -keep class com.baijiayun.live.module.data.** { <fields>; }
+ -keep class * implements com.google.gson.TypeAdapterFactory
+ -keep class * implements com.google.gson.JsonSerializer
+ -keep class * implements com.google.gson.JsonDeserializer
+ # Prevent R8 from leaving Data object members always null
+ -keepclassmembers,allowobfuscation class * {
+   @com.google.gson.annotations.SerializedName <fields>;
+ }
+ ##---------------End: proguard configuration for Gson  ----------
+

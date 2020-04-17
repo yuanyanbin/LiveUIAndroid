@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.ggd.live.httputils.util.ToastUtil;
-import com.ggd.live.ui.AnswerAwaitActivity;
-import com.ggd.live.ui.AnswerSDKWithUI;
+import com.baijiayun.live.httputils.util.ToastUtil;
+import com.baijiayun.live.module.AnswerSDKWithUI;
 
 public class MainActivity extends AppCompatActivity {
-    private String subject = "1";
+    private String subject = "12";
     private String imageUrl = "http://ggda-test.oss-cn-beijing.aliyuncs.com/problem/ef04794100358596c3c77eccdbb7c7a0.jpeg";
     private String description = "北师测试";
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.hello_button).setOnClickListener(view -> {
-            AnswerSDKWithUI.enterAnswer(this, "test", "2033068", "3000553", "89", "11",
+            AnswerSDKWithUI.enterAnswer(this, "test", "2129460", "3002153", "279", "11",
                     "13453390514", subject, imageUrl, description, new AnswerSDKWithUI.AnswerSDKListener() {
                         @Override
                         public void onError(String msg) {
