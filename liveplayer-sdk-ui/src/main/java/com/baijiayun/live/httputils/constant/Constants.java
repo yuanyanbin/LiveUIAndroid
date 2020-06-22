@@ -23,7 +23,7 @@ public class Constants {
     public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
 
     public static final String USER_TOKEN = "userToken";//
-
+    public static String versionName = "1.0.6";
     public static boolean HTTP_SITE = false;
 
     //渠道用户登录
