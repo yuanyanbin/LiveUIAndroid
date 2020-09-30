@@ -25,9 +25,9 @@ public class HttpMapUtil {
         netParams.put("osVersion", CommonUtil.getSystemVersion());//系统版本
         netParams.put("deviceId", CommonUtil.getDeviceId(mContext));//设备标识
         netParams.put("deviceModel", CommonUtil.getSystemModel()); //设备型号
-        netParams.put("appVersion", Constants.versionName); //应用版本
+        netParams.put("appVersion", CommonUtil.getVersionName(mContext)); //应用版本
         netParams.put("token", SharedPreferencesUtil.getString(mContext, Constants.USER_TOKEN, ""));
-        netParams.put("channel", "bszhihui");
+        netParams.put("channel", Constants.company);
         return netParams;
     }
 }

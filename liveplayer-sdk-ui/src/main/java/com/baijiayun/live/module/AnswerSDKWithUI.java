@@ -27,15 +27,15 @@ public class AnswerSDKWithUI {
      * 进入秒答
      *
      * @param context
-     * @param name
-     * @param userId
-     * @param classId
-     * @param schoolId
-     * @param grade
-     * @param phone
-     * @param subject
-     * @param imageUrl
-     * @param description
+     * @param name        客户名称
+     * @param userId      第三方标识
+     * @param classId     班级标识
+     * @param schoolId    学校标识
+     * @param grade       年级
+     * @param phone       手机号
+     * @param subject     学科
+     * @param imageUrl    图片链接url
+     * @param description 问题描述
      * @param listener
      */
     public static void enterAnswer(Context context, String name, String userId, String classId, String schoolId,
@@ -44,14 +44,14 @@ public class AnswerSDKWithUI {
             listener.onError("thirdId is empty");
             return;
         }
-        if (TextUtils.isEmpty(classId)) {
-            listener.onError("classId is empty");
-            return;
-        }
-        if (TextUtils.isEmpty(schoolId)) {
-            listener.onError("schoolId is empty");
-            return;
-        }
+//        if (TextUtils.isEmpty(classId)) {
+//            listener.onError("classId is empty");
+//            return;
+//        }
+//        if (TextUtils.isEmpty(schoolId)) {
+//            listener.onError("schoolId is empty");
+//            return;
+//        }
         if (TextUtils.isEmpty(grade)) {
             listener.onError("grade is empty");
             return;
@@ -114,6 +114,10 @@ public class AnswerSDKWithUI {
     public static void setHttpSite(boolean b) {
         Constants.HTTP_SITE = b;
         LogUtil.setLog(!b);
+    }
+
+    public static void setCompanyName(String company){
+        Constants.company = company;
     }
 
     public interface AnswerSDKListener {
