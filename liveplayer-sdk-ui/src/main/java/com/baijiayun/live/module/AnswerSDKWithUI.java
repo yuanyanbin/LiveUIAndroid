@@ -38,7 +38,7 @@ public class AnswerSDKWithUI {
      * @param description 问题描述
      * @param listener
      */
-    public static void enterAnswer(Context context, String name, String userId, String classId, String schoolId,
+    public static void enterAnswer(Context context, String name, String sign, String userId, String classId, String schoolId,
                                    String grade, String phone, String subject, String imageUrl, String description, AnswerSDKListener listener) {
         if (TextUtils.isEmpty(userId)) {
             listener.onError("thirdId is empty");
@@ -63,6 +63,7 @@ public class AnswerSDKWithUI {
 
         Intent intent = new Intent(context, AnswerAwaitActivity.class);
         intent.putExtra("name", name);
+        intent.putExtra("sign", sign);
         intent.putExtra("userId", userId);
         intent.putExtra("classId", classId);
         intent.putExtra("schoolId", schoolId);
@@ -116,7 +117,7 @@ public class AnswerSDKWithUI {
         LogUtil.setLog(!b);
     }
 
-    public static void setCompanyName(String company){
+    public static void setCompanyName(String company) {
         Constants.company = company;
     }
 

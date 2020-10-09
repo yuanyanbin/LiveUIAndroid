@@ -46,6 +46,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     private String imageUrl;
     private String description;
     private String name;
+    private String sign;
     private String userId;
     private String classId;
     private String schoolId;
@@ -82,7 +83,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
             setQuestionStatus(data);
         } else {
             showLoadingDialog();
-            presenter.channelUserLogin(name, userId, classId, schoolId, grade, phone);
+            presenter.channelUserLogin(name,sign, userId, classId, schoolId, grade, phone);
         }
 
     }
@@ -112,6 +113,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
 
     private void getIntentData() {
         name = getIntent().getStringExtra("name");
+        sign = getIntent().getStringExtra("sign");
         userId = getIntent().getStringExtra("userId");
         classId = getIntent().getStringExtra("classId");
         schoolId = getIntent().getStringExtra("schoolId");

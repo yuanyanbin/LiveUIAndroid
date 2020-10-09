@@ -45,7 +45,7 @@ public interface AnswerWaitContract {
          * @param grade    年级
          * @param phone    手机号
          */
-        void channelUserLogin(String name, String thirdId, String classId, String schoolId, String grade, String phone);
+        void channelUserLogin(String name,String sign, String thirdId, String classId, String schoolId, String grade, String phone);
 
         /**
          * 创建秒答

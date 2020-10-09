@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.hello_button).setOnClickListener(view -> {
-            AnswerSDKWithUI.enterAnswer(this, "test", "2129460", "", "279", "11",
+            AnswerSDKWithUI.enterAnswer(this, "test","", "2129460", "", "279", "11",
                     "13453390514", subject, imageUrl, description, new AnswerSDKWithUI.AnswerSDKListener() {
                         @Override
                         public void onError(String msg) {

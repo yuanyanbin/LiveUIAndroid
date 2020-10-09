@@ -52,7 +52,7 @@ public class HttpManager {
      * @param phone    手机号
      * @param callBack
      */
-    public void channelUserLogin(String name,  String thirdId, String classId, String schoolId, String grade, String phone, ReqCallBack<String> callBack) {
+    public void channelUserLogin(String name, String sign, String thirdId, String classId, String schoolId, String grade, String phone, ReqCallBack<String> callBack) {
         HashMap<String, String> netParams = new HashMap<>();
         netParams.put("osType", "2"); //系统类型(1:IOS;2:安卓)
         netParams.put("osVersion", CommonUtil.getSystemVersion());//系统版本
@@ -63,11 +63,14 @@ public class HttpManager {
         netParams.put("timestamp", String.valueOf(System.currentTimeMillis()));
         netParams.put("thirdId", thirdId);
         netParams.put("grade", grade);
-        if (!TextUtils.isEmpty(classId)){
+        if (!TextUtils.isEmpty(sign)) {
+            netParams.put("sign", sign);
+        }
+        if (!TextUtils.isEmpty(classId)) {
             netParams.put("classId", classId);
         }
 
-        if (!TextUtils.isEmpty(schoolId)){
+        if (!TextUtils.isEmpty(schoolId)) {
             netParams.put("schoolId", schoolId);
         }
 
