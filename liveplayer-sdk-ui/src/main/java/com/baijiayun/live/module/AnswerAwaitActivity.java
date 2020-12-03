@@ -45,11 +45,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     private String subject;
     private String imageUrl;
     private String description;
-    private String name;
-    private String sign;
     private String userId;
-    private String classId;
-    private String schoolId;
     private String grade;
     private String phone;
 
@@ -83,7 +79,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
             setQuestionStatus(data);
         } else {
             showLoadingDialog();
-            presenter.channelUserLogin(name,sign, userId, classId, schoolId, grade, phone);
+            presenter.channelUserLogin(userId, grade, phone);
         }
 
     }
@@ -112,11 +108,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     }
 
     private void getIntentData() {
-        name = getIntent().getStringExtra("name");
-        sign = getIntent().getStringExtra("sign");
         userId = getIntent().getStringExtra("userId");
-        classId = getIntent().getStringExtra("classId");
-        schoolId = getIntent().getStringExtra("schoolId");
         grade = getIntent().getStringExtra("grade");
         phone = getIntent().getStringExtra("phone");
         subject = getIntent().getStringExtra("subject");
@@ -154,7 +146,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
 
     //进入教室
     private void enterLive() {
-        if (startTime == 0L){
+        if (startTime == 0L) {
             startTime = System.currentTimeMillis();
         }
 
@@ -177,7 +169,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
             }
         });
 
-        LiveSDKWithUI.enterRoom(AnswerAwaitActivity.this, joinCode, TextUtils.isEmpty(name) ? "beishi" : name,id, s -> {
+        LiveSDKWithUI.enterRoom(AnswerAwaitActivity.this, joinCode, TextUtils.isEmpty(userId) ? id : userId, id, s -> {
             ToastUtil.showShort(AnswerAwaitActivity.this, s);
         });
     }
@@ -350,7 +342,7 @@ public class AnswerAwaitActivity extends BaseActivity implements AnswerWaitContr
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mDownTimer != null){
+        if (mDownTimer != null) {
             mDownTimer.stopDown();
         }
         presenter.detachView();

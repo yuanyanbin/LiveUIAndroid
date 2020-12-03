@@ -28,6 +28,7 @@ public class AnswerSDKWithUI {
      *
      * @param context
      * @param name        客户名称
+     * @param sign        加密信息
      * @param userId      第三方标识
      * @param classId     班级标识
      * @param schoolId    学校标识
@@ -38,20 +39,12 @@ public class AnswerSDKWithUI {
      * @param description 问题描述
      * @param listener
      */
-    public static void enterAnswer(Context context, String name, String sign, String userId, String classId, String schoolId,
+    public static void enterAnswer(Context context, String userId,
                                    String grade, String phone, String subject, String imageUrl, String description, AnswerSDKListener listener) {
         if (TextUtils.isEmpty(userId)) {
             listener.onError("thirdId is empty");
             return;
         }
-//        if (TextUtils.isEmpty(classId)) {
-//            listener.onError("classId is empty");
-//            return;
-//        }
-//        if (TextUtils.isEmpty(schoolId)) {
-//            listener.onError("schoolId is empty");
-//            return;
-//        }
         if (TextUtils.isEmpty(grade)) {
             listener.onError("grade is empty");
             return;
@@ -62,11 +55,7 @@ public class AnswerSDKWithUI {
         }
 
         Intent intent = new Intent(context, AnswerAwaitActivity.class);
-        intent.putExtra("name", name);
-        intent.putExtra("sign", sign);
         intent.putExtra("userId", userId);
-        intent.putExtra("classId", classId);
-        intent.putExtra("schoolId", schoolId);
         intent.putExtra("grade", grade);
         intent.putExtra("phone", phone);
         intent.putExtra("subject", subject);
@@ -117,8 +106,14 @@ public class AnswerSDKWithUI {
         LogUtil.setLog(!b);
     }
 
-    public static void setCompanyName(String company) {
+    /**
+     * 设置公司标识
+     * @param company
+     * @param companyToken
+     */
+    public static void setCompanyName(String company,String companyToken) {
         Constants.company = company;
+        Constants.companyToken = companyToken;
     }
 
     public interface AnswerSDKListener {

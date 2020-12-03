@@ -40,16 +40,13 @@ public class AnswerWaitPresenter implements AnswerWaitContract.Presenter {
     /**
      * 渠道用户登录
      *
-     * @param name     客户名称
      * @param userId   第三方标识
-     * @param classId  班级标识
-     * @param schoolId 学校标识
      * @param grade    年级
      * @param phone    手机号
      */
     @Override
-    public void channelUserLogin(String name,String sign, String userId, String classId, String schoolId, String grade, String phone) {
-        HttpManager.getInstance(mContext).channelUserLogin(name,sign, userId, classId, schoolId, grade, phone, new ReqCallBack<String>() {
+    public void channelUserLogin(String userId,String grade, String phone) {
+        HttpManager.getInstance(mContext).channelUserLogin( userId,grade, phone, new ReqCallBack<String>() {
             @Override
             public void onReqSuccess(String result) {
                 if (mView != null) {

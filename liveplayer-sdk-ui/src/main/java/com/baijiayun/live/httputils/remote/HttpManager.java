@@ -44,15 +44,12 @@ public class HttpManager {
     /**
      * 渠道用户登录
      *
-     * @param name     客户名称
      * @param thirdId  第三方标识
-     * @param classId  班级标识
-     * @param schoolId 学校标识
      * @param grade    年级
      * @param phone    手机号
      * @param callBack
      */
-    public void channelUserLogin(String name, String sign, String thirdId, String classId, String schoolId, String grade, String phone, ReqCallBack<String> callBack) {
+    public void channelUserLogin(String thirdId, String grade, String phone, ReqCallBack<String> callBack) {
         HashMap<String, String> netParams = new HashMap<>();
         netParams.put("osType", "2"); //系统类型(1:IOS;2:安卓)
         netParams.put("osVersion", CommonUtil.getSystemVersion());//系统版本
@@ -60,23 +57,11 @@ public class HttpManager {
         netParams.put("deviceModel", CommonUtil.getSystemModel()); //设备型号
         netParams.put("appVersion", CommonUtil.getVersionName(mContext)); //应用版本
         netParams.put("channel", Constants.company);
+        netParams.put("channeToken", Constants.companyToken);
         netParams.put("timestamp", String.valueOf(System.currentTimeMillis()));
         netParams.put("thirdId", thirdId);
         netParams.put("grade", grade);
-        if (!TextUtils.isEmpty(sign)) {
-            netParams.put("sign", sign);
-        }
-        if (!TextUtils.isEmpty(classId)) {
-            netParams.put("classId", classId);
-        }
 
-        if (!TextUtils.isEmpty(schoolId)) {
-            netParams.put("schoolId", schoolId);
-        }
-
-        if (!TextUtils.isEmpty(name)) {
-            netParams.put("name", name);
-        }
         if (!TextUtils.isEmpty(phone)) {
             netParams.put("phone", phone);
         }

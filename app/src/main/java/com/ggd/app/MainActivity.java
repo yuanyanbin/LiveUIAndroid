@@ -8,7 +8,7 @@ import com.baijiayun.live.httputils.util.ToastUtil;
 import com.baijiayun.live.module.AnswerSDKWithUI;
 
 public class MainActivity extends AppCompatActivity {
-    private String subject = "12";
+    private String subject = "2";
     private String imageUrl = "http://ggda-test.oss-cn-beijing.aliyuncs.com/problem/ef04794100358596c3c77eccdbb7c7a0.jpeg";
     private String description = "北师测试";
 
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AnswerSDKWithUI.setCompanyName("bszhihui");
+        AnswerSDKWithUI.setCompanyName("test","607327d417d01dc59ef73116fe392169");
         AnswerSDKWithUI.setHttpSite(false);
         AnswerSDKWithUI.getIncompleteQuestion(this, new AnswerSDKWithUI.AnswerSDKListener() {
             @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.hello_button).setOnClickListener(view -> {
-            AnswerSDKWithUI.enterAnswer(this, "test","", "2129460", "", "279", "11",
+            AnswerSDKWithUI.enterAnswer(this, "1","12",
                     "13453390514", subject, imageUrl, description, new AnswerSDKWithUI.AnswerSDKListener() {
                         @Override
                         public void onError(String msg) {

@@ -26,6 +26,7 @@ public class Constants {
 
     public static boolean HTTP_SITE = false;
     public static String company;
+    public static String companyToken;
 
     //渠道用户登录
     public static final String channelUserLogin = "system/channelUserLogin";
